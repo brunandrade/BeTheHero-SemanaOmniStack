@@ -3,9 +3,23 @@ const connection = require('../database/connection')
 
 module.exports={
 
-    async index(request, response){
-        const incidents = await connection('incidents').select('*');
+    async index(request, response){    
+      const {page = 1} = request.query;
 
+      const [count] = await connection('incidents').count();
+      //console.log(count);
+        const incidents = await connection('incidents')
+        .join('ongs', 'ongs.id', '=','incidents.ong_id')
+        .limit(5)
+        .offset((page-1)*5)   //PAGINAÇÃO DA QUANTIDADE DE ITENS QUE APARECE EM TELA
+          .select(['incidents.*', 
+          'ongs.name', 
+          'ongs.email', 
+          'ongs.whatsapp', 
+          'ongs.city', 
+          'ongs.uf'])
+        
+        response.header('X-Total-Count', count['count(*)']);
         return response.json(incidents);
     },
 
@@ -13,13 +27,13 @@ module.exports={
         const { title, description, value } = request.body;
         const ong_id = request.headers.authorization;
     
-        const [id] = await connection('incidents').insert({
+        const result = await connection('incidents').insert({
           title,
           description,
           value,
           ong_id,
         });
-    
+        const id = result[0];
         return response.json({ id });
       },
     
