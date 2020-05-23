@@ -43,6 +43,13 @@
     margin-top: 80px;
     margin-bottom: 24px;
   }
+
+  .profile-container h3 {
+    margin-top: auto;
+    margin-bottom: 24px;
+    color: #737380;;
+    
+  }
   
   .profile-container ul {
     display: grid;
@@ -53,7 +60,7 @@
   
   .profile-container ul li {
     background: #FFF;
-    padding: 24px;
+    padding: 40px;
     border-radius: 8px;
     position: relative;
   }

@@ -9,6 +9,7 @@ import './styles.css';
 import logoImg from '../../assests/logo.svg';
 
 export default function Profile() {
+  const [counter, setCounter] = useState();
   const [incidents, setIncidents] = useState([]);
 
   const history = useHistory();
@@ -40,6 +41,7 @@ export default function Profile() {
     }
   }
 
+
   function handleLogout() {
     localStorage.clear();
 
@@ -50,33 +52,47 @@ export default function Profile() {
     <div className="profile-container">
       <header>
         <img src={logoImg} alt="Be the Hero" />
-        <span>Bem vinda, {ongName}</span>
+        <span>Bem vinda, <strong>{ongName}</strong></span>
 
+        <Link className="button" to="/detail">Detalhe da Ong</Link>
         <Link className="button" to="/incidents/new">Cadastrar novo caso</Link>
+       
         <button onClick={handleLogout} type="button">
           <FiPower size={18} color="#E02041" />
         </button>
       </header>
-
-      <h1>Casos cadastrados</h1>
+     
+      {incidents.length > 0 ? <h1>Casos cadastrados</h1> : null}   
+      {incidents.length > 0 ? (<h3>Quantidade de casos cadastrados: {incidents.length}</h3>) :null } 
 
       <ul>
-        {incidents.map(incident => (
-          <li key={incident.id}>
-            <strong>CASO:</strong>
-            <p>{incident.title}</p>
+        {incidents.length > 0 ? (
+          incidents.map((incident) => (
+            <li key={incident.id}>
+              <strong>CASO:</strong>
+              <p>{incident.title}</p>
 
-            <strong>DESCRIÇÃO:</strong>
-            <p>{incident.description}</p>
+              <strong>DESCRIÇÃO:</strong>
+              <p>{incident.description}</p>
 
-            <strong>VALOR:</strong>
-            <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)}</p>
+              <strong>VALOR:</strong>
+              <p>
+                {Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(incident.value)}
+              </p>
 
-            <button onClick={() => handleDeleteIncident(incident.id)} type="button">
-              <FiTrash2 size={20} color="#a8a8b3" />
-            </button>
-          </li>
-        ))}
+              <button
+                onClick={() => handleDeleteIncident(incident.id)}
+                type="button">
+                <FiTrash2 size={20} />
+              </button>
+            </li>
+          ))
+        ) : (
+          <h1>Nenhum caso registrado</h1>
+        )}
       </ul>
     </div>
   );
