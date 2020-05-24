@@ -4,11 +4,17 @@ const IncidentController = require ('./controlers/IncidentController');
 const ProfileController = require ('./controlers/ProfileController');
 const SessionController = require ('./controlers/SessionController');
 const DetailController = require ('./controlers/DetailController');
+const AdminController = require ('./controlers/AdminController');
 
 
 const routes = express.Router();
 
 routes.post('/sessions', SessionController.create);
+
+routes.post('/admin/create', AdminController.create);
+routes.get('/admin/ongs', AdminController.ongList);
+routes.get('/admin/incidents', AdminController.incidentsList);
+routes.get('/admin/detail', AdminController.detail);
 
 routes.post('/ongs', OngController.create);
 routes.get('/ongs', OngController.index);
