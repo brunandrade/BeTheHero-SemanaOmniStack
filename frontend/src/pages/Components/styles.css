@@ -1,0 +1,33 @@
+.menu{
+
+    display: flex;
+    width: 100%;
+    border: 0;
+    background: #e02041;
+    border-radius: 8px;
+    height: 60px;
+    text-align: center;    
+    text-decoration: none;
+    align-items: center;
+ 
+}
+
+.menu-item{
+    color: #FFF;
+    font-weight: bold;
+    align-items: center;
+    font-size: 18px;
+}
+
+a:link{
+    text-decoration: none
+}
+
+a:hover {
+	text-decoration: none; 
+	color: #DCDCE6;
+    }
+    
+a:active {
+    color: #e02041;
+    }

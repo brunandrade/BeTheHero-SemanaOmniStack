@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
-
+//import { Link, useHistory } from 'react-router-dom';
+//import { FiPower, FiTrash2 } from 'react-icons/fi';
+import Header from '../Components/header'
 import api from '../../services/api';
 
 import './styles.css';
 
-import logoImg from '../../assests/logo.svg';
+//import logoImg from '../../assests/logo.svg';
 import infoImg from '../../assests/info.svg';
 
 export default function Detail(){
@@ -14,10 +14,10 @@ export default function Detail(){
     
   const [ongs, setOngs] = useState([]);
 
-  const history = useHistory();
+  //const history = useHistory();
 
   const ongId = localStorage.getItem('ongId');
-  const ongName = localStorage.getItem('ongName');
+  // const ongName = localStorage.getItem('ongName');
 
   useEffect(() => {
     api.get('detail', {
@@ -30,14 +30,14 @@ export default function Detail(){
   }, [ongId]);
 
   
-  function handleLogout() {
-    localStorage.clear();
-    history.push('/');
-  }
+  // function handleLogout() {
+  //   localStorage.clear();
+  //   history.push('/');
+  // }
     return(
         
     <div className="detail-container">            
-        <header>
+        {/* <header>
           <img src={logoImg} alt="Be the Hero" />
           <span>Bem vinda, <strong>{ongName}</strong></span>
   
@@ -47,7 +47,9 @@ export default function Detail(){
             <FiPower size={18} color="#E02041" />
           </button>
         </header>
-        
+         */}
+
+         <Header/>
         <div className="content">     
               
             <img src={infoImg} alt="Be the Hero" className="detail-img"/>

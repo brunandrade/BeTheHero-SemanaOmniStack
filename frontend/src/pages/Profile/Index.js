@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
-
+//import { useHistory } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+import {FiTrash2 } from 'react-icons/fi';
 import api from '../../services/api';
-
 import './styles.css';
-
-import logoImg from '../../assests/logo.svg';
+//import logoImg from '../../assests/logo.svg';
+import Header from '../Components/header';
 
 export default function Profile() {
-  const [counter, setCounter] = useState();
+  //const [counter, setCounter] = useState();
   const [incidents, setIncidents] = useState([]);
 
-  const history = useHistory();
+  //const history = useHistory();
 
   const ongId = localStorage.getItem('ongId');
-  const ongName = localStorage.getItem('ongName');
+  //const ongName = localStorage.getItem('ongName');
 
   useEffect(() => {
     api.get('profile', {
@@ -42,28 +41,21 @@ export default function Profile() {
   }
 
 
-  function handleLogout() {
-    localStorage.clear();
+  // function handleLogout() {
+  //   localStorage.clear();
 
-    history.push('/');
-  }
+  //   history.push('/');
+  // }
 
   return (
     <div className="profile-container">
-      <header>
-        <img src={logoImg} alt="Be the Hero" />
-        <span>Bem vinda, <strong>{ongName}</strong></span>
-
-        <Link className="button" to="/detail">Detalhe da Ong</Link>
-        <Link className="button" to="/incidents/new">Cadastrar novo caso</Link>
-       
-        <button onClick={handleLogout} type="button">
-          <FiPower size={18} color="#E02041" />
-        </button>
-      </header>
+     
+      <Header/>
+      
      
       {incidents.length > 0 ? <h1>Casos cadastrados</h1> : null}   
       {incidents.length > 0 ? (<h3>Quantidade de casos cadastrados: {incidents.length}</h3>) :null } 
+     
 
       <ul>
         {incidents.length > 0 ? (
