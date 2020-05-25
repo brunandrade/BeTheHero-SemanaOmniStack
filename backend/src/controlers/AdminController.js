@@ -15,12 +15,25 @@ module.exports={
     },
 
     async ongList(request, response){
-        const ongs = await connection('ongs').select('*');    
+        const {page = 1} = request.query;       
+
+        const ongs = await connection('ongs')
+        .select('*')
+        .limit(5)
+        .offset((page-1)*5);
+  
         return response.json(ongs);
     },
 
     async incidentsList(request, response){
-        const ongs = await connection('incidents').select('*');    
+        const {page = 1} = request.query;
+        const ongs = await connection('incidents')
+        .join('ongs', 'ongs.id','=','incidents.ong_id')
+        .select(['incidents.*', 
+          'ongs.name AS OngName' , 
+          ])
+        .limit(5)
+        .offset((page-1)*5)  
         return response.json(ongs);
     },
 
@@ -46,8 +59,6 @@ module.exports={
             'incidents.value',])
             .where('ongs.id', ong_id)
             //.groupBy('ongs.id')
-
-
 
           return response.json(info);          
 
