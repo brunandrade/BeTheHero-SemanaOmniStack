@@ -1,5 +1,6 @@
 const connection = require('../database/connection');
 const  crypto = require('crypto');
+const emailService = require ('../Services/EmailService');
 
 module.exports={
 
@@ -22,7 +23,11 @@ module.exports={
         uf,
     })
 
+    emailService.send(email, id);
     return response.json({ id });
         
-    }
+    },
+
+
 };
+
