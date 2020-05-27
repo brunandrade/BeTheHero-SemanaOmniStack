@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
 .register-container{
     width: 100%;
     max-width: 1120px;
@@ -53,3 +56,41 @@
 .register-container .content form .input-group input + input{
    margin-left: 8px;
    }
+
+.modal-register{
+    position: absolute;
+    align-items: center;
+    left: 34.51%;
+    right: 35.49%;
+    top: 35.89%;
+    bottom: 32.22%;
+    background: #e02041;
+    /* SOMBRA */
+    box-shadow: 6px 6px 13px rgba(0, 0, 0, 0.04);
+    border-radius: 10px;
+
+}
+
+.modal-register p{
+    left: 20%;
+    right: 20%;
+    top: 55.89%;
+    bottom: 36.33%;
+    position: absolute;
+    font-family: Roboto;
+    font-size: 26px;
+    line-height: 35px;
+    text-align: center;
+    color: #ffffff;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.App {
+    text-align: center;
+  }
+
+.modal-container{
+    text-align: center;
+}
+  
