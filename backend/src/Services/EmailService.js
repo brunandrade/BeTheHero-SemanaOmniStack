@@ -10,7 +10,7 @@ module.exports={
             secure: false,
             auth: {
                 user : "contato@divvi.com.br",
-                pass: "123"
+                pass: "!passnot123456789"
             }
          });
          
